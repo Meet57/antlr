@@ -2,20 +2,23 @@ grammar SearchQuery;
 
 searchEntry: searchQuery+;
 
-searchQuery: searchOperation ' ' searchSource ':"' searchIP '" ' searchType ':"' searchTask '"';
+searchQuery:
+	searchOperation ' ' searchSource ':"' searchIP '" ' searchType ':"' searchTask '"';
 
-searchOperation: (SHOW|DISPLAY|GET);
-searchSource: (SOURCE|SOURCEIP);
+searchOperation: (SHOW | DISPLAY | GET);
+searchSource: (SOURCE | SOURCEIP);
 searchIP: TEXT;
-searchType: (METRIC|GROUP);
+searchType: (METRIC | GROUP);
 searchTask: TEXT;
 
-SHOW: 'SHOW';
-DISPLAY: 'DISPLAY';
-GET: 'GET';
+SHOW: 'show';
+DISPLAY: 'display';
+GET: 'get';
 METRIC: 'metric';
-GROUP:'group';
+GROUP: 'group';
 
 SOURCE: 'source';
-SOURCEIP: 'sourceip;';
-TEXT: [a-zA-Z.]+;
+SOURCEIP: 'sourceip';
+TEXT: [.a-zA-Z0-9~]+;
+
+WS: [ \n\t]+ -> skip;

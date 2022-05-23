@@ -17,7 +17,7 @@ public class SearchQueryParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, SHOW=5, DISPLAY=6, GET=7, METRIC=8, GROUP=9, 
-		SOURCE=10, SOURCEIP=11, TEXT=12;
+		SOURCE=10, SOURCEIP=11, TEXT=12, WS=13;
 	public static final int
 		RULE_searchEntry = 0, RULE_searchQuery = 1, RULE_searchOperation = 2, 
 		RULE_searchSource = 3, RULE_searchIP = 4, RULE_searchType = 5, RULE_searchTask = 6;
@@ -31,15 +31,15 @@ public class SearchQueryParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "' '", "':\"'", "'\" '", "'\"'", "'SHOW'", "'DISPLAY'", "'GET'", 
-			"'metric'", "'group'", "'source'", "'sourceip;'"
+			null, "' '", "':\"'", "'\" '", "'\"'", "'show'", "'display'", "'get'", 
+			"'metric'", "'group'", "'source'", "'sourceip'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, "SHOW", "DISPLAY", "GET", "METRIC", "GROUP", 
-			"SOURCE", "SOURCEIP", "TEXT"
+			"SOURCE", "SOURCEIP", "TEXT", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -378,7 +378,7 @@ public class SearchQueryParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16+\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\17+\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\6\2\22\n\2\r\2\16\2\23"+
 		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3"+
 		"\7\3\7\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\5\3\2\7\t\3\2\f\r\3\2\n\13\2"+

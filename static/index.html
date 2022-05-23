@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motadata</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-auto mx-auto">
+        <textarea id="rawText" class="form-control" rows="6" cols="100">
+show source:"10.20.40.200" metric:"system.network.udp.connections"
+get sourceip:"rac2.oracle.local" metric:"system.network.udp.connections"
+show source:"192.168.0.1" group:"system.network.interface~in.bytes.per.sec"</textarea>
+        <br>
+        <button onclick="generateTable();" class="btn btn-outline-primary">Submit</button>
+        <div id="tableWrapper"></div>
+      </div>
+    </div>
+  </div>
+  <script src="searchparser.js"></script>
+  <script>
+    function generateTable() {
+      const textarea = document.getElementById("rawText");
+      const tableWrapper = document.getElementById("tableWrapper");
+      tableWrapper.innerHTML = SearchParser.parse(textarea.value);
+    }
+
+  </script>
+</body>
+</html>
+

@@ -2,7 +2,7 @@
 // jshint ignore: start
 import antlr4 from 'antlr4';
 import SearchQueryListener from './SearchQueryListener.js';
-const serializedATN = [4,1,12,41,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
+const serializedATN = [4,1,13,41,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
 2,5,7,5,2,6,7,6,1,0,4,0,16,8,0,11,0,12,0,17,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,2,1,2,1,3,1,3,1,4,1,4,1,5,1,5,1,6,1,6,1,6,0,0,7,0,2,4,
 6,8,10,12,0,3,1,0,5,7,1,0,10,11,1,0,8,9,34,0,15,1,0,0,0,2,19,1,0,0,0,4,30,
@@ -24,12 +24,12 @@ const sharedContextCache = new antlr4.PredictionContextCache();
 export default class SearchQueryParser extends antlr4.Parser {
 
     static grammarFileName = "SearchQuery.g4";
-    static literalNames = [ null, "' '", "':\"'", "'\" '", "'\"'", "'SHOW'", 
-                            "'DISPLAY'", "'GET'", "'metric'", "'group'", 
-                            "'source'", "'sourceip;'" ];
+    static literalNames = [ null, "' '", "':\"'", "'\" '", "'\"'", "'show'", 
+                            "'display'", "'get'", "'metric'", "'group'", 
+                            "'source'", "'sourceip'" ];
     static symbolicNames = [ null, null, null, null, null, "SHOW", "DISPLAY", 
                              "GET", "METRIC", "GROUP", "SOURCE", "SOURCEIP", 
-                             "TEXT" ];
+                             "TEXT", "WS" ];
     static ruleNames = [ "searchEntry", "searchQuery", "searchOperation", 
                          "searchSource", "searchIP", "searchType", "searchTask" ];
 
@@ -273,6 +273,7 @@ SearchQueryParser.GROUP = 9;
 SearchQueryParser.SOURCE = 10;
 SearchQueryParser.SOURCEIP = 11;
 SearchQueryParser.TEXT = 12;
+SearchQueryParser.WS = 13;
 
 SearchQueryParser.RULE_searchEntry = 0;
 SearchQueryParser.RULE_searchQuery = 1;
