@@ -5,29 +5,22 @@ export default class TableGenerator extends SearchQueryListener {
   tableSource = "";
 
   exitSearchQuery(ctx) {
+    console.log(ctx.parser.ruleNames);
     try {
-      if (
-        ctx.searchOperation() &&
-        ctx.searchSource() &&
-        ctx.searchIP() &&
-        ctx.searchType() &&
-        ctx.searchTask()
-      ) {
-        const searchOperation = ctx.searchOperation().getText();
-        const searchSource = ctx.searchSource().getText();
-        const searchIP = ctx.searchIP().getText();
-        const searchType = ctx.searchType().getText();
-        const searchTask = ctx.searchTask().getText();
-
-        this.tableSource += `
-        <tr>
-            <td>${searchOperation}</td>
-            <td>${searchSource}</td>
-            <td>${searchIP}</td>
-            <td>${searchType}</td>
-            <td>${searchTask}</td>
-        <tr>
-        `;
+      let lastParser = ctx.parser.ruleNames.at(-1);
+      if (ctx[lastParser]()) {
+        ctx.parser.ruleNames.slice(2).map((rule) => {
+          if (ctx[rule]()) {
+            this.tableSource += `
+              <li class="list-group-item">
+                <div class="row">
+                <div class="col-3 text-primary">${rule}</div>
+                <div class="col-9">${ctx[rule]().getText()}</div>
+                </div>
+              </li>
+            `;
+          }
+        });
       }
     } catch (error) {
       searchContext.setError(error);
@@ -36,16 +29,9 @@ export default class TableGenerator extends SearchQueryListener {
 
   getTable() {
     const table = `
-            <table class="table table-hover">
-                <tr class="table-dark">
-                    <th>Operation</th>
-                    <th>Source</th>
-                    <th>IP</th>
-                    <th>Type</th>
-                    <th>Task</th>
-                <tr>
+            <ul class="list-group ">
                 ${this.tableSource}
-            </table>
+            </ul>
         `;
     return table;
   }

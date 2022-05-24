@@ -19,6 +19,8 @@ export let parse = () => {
   const parser = new SearchQueryParser(tokens);
   parser.buildParseTrees = true;
   searchContext.setError(null);
+  document.getElementById("tableWrapper").innerHTML = "";
+
   parser.removeErrorListeners();
   parser.addErrorListener({
     syntaxError: (recognizer, offendingSymbol, line, column, msg, err) => {

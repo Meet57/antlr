@@ -2,16 +2,17 @@
 // jshint ignore: start
 import antlr4 from 'antlr4';
 import SearchQueryListener from './SearchQueryListener.js';
-const serializedATN = [4,1,14,38,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
-2,5,7,5,2,6,7,6,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
-1,2,1,3,1,3,1,4,1,4,1,5,1,5,1,6,1,6,1,6,0,0,7,0,2,4,6,8,10,12,0,3,1,0,5,
-7,1,0,10,11,1,0,8,9,30,0,14,1,0,0,0,2,16,1,0,0,0,4,27,1,0,0,0,6,29,1,0,0,
-0,8,31,1,0,0,0,10,33,1,0,0,0,12,35,1,0,0,0,14,15,3,2,1,0,15,1,1,0,0,0,16,
-17,3,4,2,0,17,18,5,1,0,0,18,19,3,6,3,0,19,20,5,2,0,0,20,21,3,8,4,0,21,22,
-5,3,0,0,22,23,3,10,5,0,23,24,5,2,0,0,24,25,3,12,6,0,25,26,5,4,0,0,26,3,1,
-0,0,0,27,28,7,0,0,0,28,5,1,0,0,0,29,30,7,1,0,0,30,7,1,0,0,0,31,32,5,13,0,
-0,32,9,1,0,0,0,33,34,7,2,0,0,34,11,1,0,0,0,35,36,5,12,0,0,36,13,1,0,0,0,
-0];
+const serializedATN = [4,1,15,41,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
+2,5,7,5,2,6,7,6,1,0,4,0,16,8,0,11,0,12,0,17,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,2,1,2,1,3,1,3,1,4,1,4,1,5,1,5,1,6,1,6,1,6,0,0,7,0,2,4,
+6,8,10,12,0,3,1,0,6,8,1,0,12,13,1,0,9,10,34,0,15,1,0,0,0,2,19,1,0,0,0,4,
+30,1,0,0,0,6,32,1,0,0,0,8,34,1,0,0,0,10,36,1,0,0,0,12,38,1,0,0,0,14,16,3,
+2,1,0,15,14,1,0,0,0,16,17,1,0,0,0,17,15,1,0,0,0,17,18,1,0,0,0,18,1,1,0,0,
+0,19,20,3,4,2,0,20,21,5,1,0,0,21,22,3,6,3,0,22,23,5,2,0,0,23,24,3,8,4,0,
+24,25,5,3,0,0,25,26,3,10,5,0,26,27,5,2,0,0,27,28,3,12,6,0,28,29,5,4,0,0,
+29,3,1,0,0,0,30,31,7,0,0,0,31,5,1,0,0,0,32,33,7,1,0,0,33,7,1,0,0,0,34,35,
+5,5,0,0,35,9,1,0,0,0,36,37,7,2,0,0,37,11,1,0,0,0,38,39,5,14,0,0,39,13,1,
+0,0,0,1,17];
 
 
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -23,12 +24,12 @@ const sharedContextCache = new antlr4.PredictionContextCache();
 export default class SearchQueryParser extends antlr4.Parser {
 
     static grammarFileName = "SearchQuery.g4";
-    static literalNames = [ null, "' '", "':\"'", "'\" '", "'\"'", "'show'", 
-                            "'display'", "'get'", "'metric'", "'group'", 
-                            "'source'", "'sourceip'" ];
-    static symbolicNames = [ null, null, null, null, null, "SHOW", "DISPLAY", 
-                             "GET", "METRIC", "GROUP", "SOURCE", "SOURCEIP", 
-                             "TEXT", "ONLYIP", "WS" ];
+    static literalNames = [ null, "' '", "':\"'", "'\" '", "'\"'", null, 
+                            "'show'", "'display'", "'get'", "'log'", "'metric'", 
+                            "'group'", "'source'", "'sourceip'" ];
+    static symbolicNames = [ null, null, null, null, null, "ONLYIP", "SHOW", 
+                             "DISPLAY", "GET", "LOG", "METRIC", "GROUP", 
+                             "SOURCE", "SOURCEIP", "TASK", "WS" ];
     static ruleNames = [ "searchEntry", "searchQuery", "searchOperation", 
                          "searchSource", "searchIP", "searchType", "searchTask" ];
 
@@ -49,10 +50,19 @@ export default class SearchQueryParser extends antlr4.Parser {
 	searchEntry() {
 	    let localctx = new SearchEntryContext(this, this._ctx, this.state);
 	    this.enterRule(localctx, 0, SearchQueryParser.RULE_searchEntry);
+	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 14;
-	        this.searchQuery();
+	        this.state = 15; 
+	        this._errHandler.sync(this);
+	        _la = this._input.LA(1);
+	        do {
+	            this.state = 14;
+	            this.searchQuery();
+	            this.state = 17; 
+	            this._errHandler.sync(this);
+	            _la = this._input.LA(1);
+	        } while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << SearchQueryParser.SHOW) | (1 << SearchQueryParser.DISPLAY) | (1 << SearchQueryParser.GET))) !== 0));
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -74,25 +84,25 @@ export default class SearchQueryParser extends antlr4.Parser {
 	    this.enterRule(localctx, 2, SearchQueryParser.RULE_searchQuery);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 16;
-	        this.searchOperation();
-	        this.state = 17;
-	        this.match(SearchQueryParser.T__0);
-	        this.state = 18;
-	        this.searchSource();
 	        this.state = 19;
-	        this.match(SearchQueryParser.T__1);
+	        this.searchOperation();
 	        this.state = 20;
-	        this.searchIP();
+	        this.match(SearchQueryParser.T__0);
 	        this.state = 21;
-	        this.match(SearchQueryParser.T__2);
+	        this.searchSource();
 	        this.state = 22;
-	        this.searchType();
-	        this.state = 23;
 	        this.match(SearchQueryParser.T__1);
+	        this.state = 23;
+	        this.searchIP();
 	        this.state = 24;
-	        this.searchTask();
+	        this.match(SearchQueryParser.T__2);
 	        this.state = 25;
+	        this.searchType();
+	        this.state = 26;
+	        this.match(SearchQueryParser.T__1);
+	        this.state = 27;
+	        this.searchTask();
+	        this.state = 28;
 	        this.match(SearchQueryParser.T__3);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -116,7 +126,7 @@ export default class SearchQueryParser extends antlr4.Parser {
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 27;
+	        this.state = 30;
 	        _la = this._input.LA(1);
 	        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << SearchQueryParser.SHOW) | (1 << SearchQueryParser.DISPLAY) | (1 << SearchQueryParser.GET))) !== 0))) {
 	        this._errHandler.recoverInline(this);
@@ -147,7 +157,7 @@ export default class SearchQueryParser extends antlr4.Parser {
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 29;
+	        this.state = 32;
 	        _la = this._input.LA(1);
 	        if(!(_la===SearchQueryParser.SOURCE || _la===SearchQueryParser.SOURCEIP)) {
 	        this._errHandler.recoverInline(this);
@@ -177,7 +187,7 @@ export default class SearchQueryParser extends antlr4.Parser {
 	    this.enterRule(localctx, 8, SearchQueryParser.RULE_searchIP);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 31;
+	        this.state = 34;
 	        this.match(SearchQueryParser.ONLYIP);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -201,9 +211,9 @@ export default class SearchQueryParser extends antlr4.Parser {
 	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 33;
+	        this.state = 36;
 	        _la = this._input.LA(1);
-	        if(!(_la===SearchQueryParser.METRIC || _la===SearchQueryParser.GROUP)) {
+	        if(!(_la===SearchQueryParser.LOG || _la===SearchQueryParser.METRIC)) {
 	        this._errHandler.recoverInline(this);
 	        }
 	        else {
@@ -231,8 +241,8 @@ export default class SearchQueryParser extends antlr4.Parser {
 	    this.enterRule(localctx, 12, SearchQueryParser.RULE_searchTask);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 35;
-	        this.match(SearchQueryParser.TEXT);
+	        this.state = 38;
+	        this.match(SearchQueryParser.TASK);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -255,16 +265,17 @@ SearchQueryParser.T__0 = 1;
 SearchQueryParser.T__1 = 2;
 SearchQueryParser.T__2 = 3;
 SearchQueryParser.T__3 = 4;
-SearchQueryParser.SHOW = 5;
-SearchQueryParser.DISPLAY = 6;
-SearchQueryParser.GET = 7;
-SearchQueryParser.METRIC = 8;
-SearchQueryParser.GROUP = 9;
-SearchQueryParser.SOURCE = 10;
-SearchQueryParser.SOURCEIP = 11;
-SearchQueryParser.TEXT = 12;
-SearchQueryParser.ONLYIP = 13;
-SearchQueryParser.WS = 14;
+SearchQueryParser.ONLYIP = 5;
+SearchQueryParser.SHOW = 6;
+SearchQueryParser.DISPLAY = 7;
+SearchQueryParser.GET = 8;
+SearchQueryParser.LOG = 9;
+SearchQueryParser.METRIC = 10;
+SearchQueryParser.GROUP = 11;
+SearchQueryParser.SOURCE = 12;
+SearchQueryParser.SOURCEIP = 13;
+SearchQueryParser.TASK = 14;
+SearchQueryParser.WS = 15;
 
 SearchQueryParser.RULE_searchEntry = 0;
 SearchQueryParser.RULE_searchQuery = 1;
@@ -288,8 +299,15 @@ class SearchEntryContext extends antlr4.ParserRuleContext {
         this.ruleIndex = SearchQueryParser.RULE_searchEntry;
     }
 
-	searchQuery() {
-	    return this.getTypedRuleContext(SearchQueryContext,0);
+	searchQuery = function(i) {
+	    if(i===undefined) {
+	        i = null;
+	    }
+	    if(i===null) {
+	        return this.getTypedRuleContexts(SearchQueryContext);
+	    } else {
+	        return this.getTypedRuleContext(SearchQueryContext,i);
+	    }
 	};
 
 	enterRule(listener) {
@@ -495,8 +513,8 @@ class SearchTypeContext extends antlr4.ParserRuleContext {
 	    return this.getToken(SearchQueryParser.METRIC, 0);
 	};
 
-	GROUP() {
-	    return this.getToken(SearchQueryParser.GROUP, 0);
+	LOG() {
+	    return this.getToken(SearchQueryParser.LOG, 0);
 	};
 
 	enterRule(listener) {
@@ -530,8 +548,8 @@ class SearchTaskContext extends antlr4.ParserRuleContext {
         this.ruleIndex = SearchQueryParser.RULE_searchTask;
     }
 
-	TEXT() {
-	    return this.getToken(SearchQueryParser.TEXT, 0);
+	TASK() {
+	    return this.getToken(SearchQueryParser.TASK, 0);
 	};
 
 	enterRule(listener) {

@@ -16,8 +16,8 @@ public class SearchQueryParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, SHOW=5, DISPLAY=6, GET=7, METRIC=8, GROUP=9, 
-		SOURCE=10, SOURCEIP=11, TEXT=12, ONLYIP=13, WS=14;
+		T__0=1, T__1=2, T__2=3, T__3=4, ONLYIP=5, SHOW=6, DISPLAY=7, GET=8, LOG=9, 
+		METRIC=10, GROUP=11, SOURCE=12, SOURCEIP=13, TASK=14, WS=15;
 	public static final int
 		RULE_searchEntry = 0, RULE_searchQuery = 1, RULE_searchOperation = 2, 
 		RULE_searchSource = 3, RULE_searchIP = 4, RULE_searchType = 5, RULE_searchTask = 6;
@@ -31,15 +31,15 @@ public class SearchQueryParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "' '", "':\"'", "'\" '", "'\"'", "'show'", "'display'", "'get'", 
-			"'metric'", "'group'", "'source'", "'sourceip'"
+			null, "' '", "':\"'", "'\" '", "'\"'", null, "'show'", "'display'", "'get'", 
+			"'log'", "'metric'", "'group'", "'source'", "'sourceip'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, "SHOW", "DISPLAY", "GET", "METRIC", "GROUP", 
-			"SOURCE", "SOURCEIP", "TEXT", "ONLYIP", "WS"
+			null, null, null, null, null, "ONLYIP", "SHOW", "DISPLAY", "GET", "LOG", 
+			"METRIC", "GROUP", "SOURCE", "SOURCEIP", "TASK", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -94,8 +94,11 @@ public class SearchQueryParser extends Parser {
 	}
 
 	public static class SearchEntryContext extends ParserRuleContext {
-		public SearchQueryContext searchQuery() {
-			return getRuleContext(SearchQueryContext.class,0);
+		public List<SearchQueryContext> searchQuery() {
+			return getRuleContexts(SearchQueryContext.class);
+		}
+		public SearchQueryContext searchQuery(int i) {
+			return getRuleContext(SearchQueryContext.class,i);
 		}
 		public SearchEntryContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -106,11 +109,24 @@ public class SearchQueryParser extends Parser {
 	public final SearchEntryContext searchEntry() throws RecognitionException {
 		SearchEntryContext _localctx = new SearchEntryContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_searchEntry);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(14);
-			searchQuery();
+			setState(15); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(14);
+				searchQuery();
+				}
+				}
+				setState(17); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SHOW) | (1L << DISPLAY) | (1L << GET))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -152,25 +168,25 @@ public class SearchQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(16);
-			searchOperation();
-			setState(17);
-			match(T__0);
-			setState(18);
-			searchSource();
 			setState(19);
-			match(T__1);
+			searchOperation();
 			setState(20);
-			searchIP();
+			match(T__0);
 			setState(21);
-			match(T__2);
+			searchSource();
 			setState(22);
-			searchType();
-			setState(23);
 			match(T__1);
+			setState(23);
+			searchIP();
 			setState(24);
-			searchTask();
+			match(T__2);
 			setState(25);
+			searchType();
+			setState(26);
+			match(T__1);
+			setState(27);
+			searchTask();
+			setState(28);
 			match(T__3);
 			}
 		}
@@ -202,7 +218,7 @@ public class SearchQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(27);
+			setState(30);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SHOW) | (1L << DISPLAY) | (1L << GET))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -241,7 +257,7 @@ public class SearchQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(29);
+			setState(32);
 			_la = _input.LA(1);
 			if ( !(_la==SOURCE || _la==SOURCEIP) ) {
 			_errHandler.recoverInline(this);
@@ -278,7 +294,7 @@ public class SearchQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(31);
+			setState(34);
 			match(ONLYIP);
 			}
 		}
@@ -295,7 +311,7 @@ public class SearchQueryParser extends Parser {
 
 	public static class SearchTypeContext extends ParserRuleContext {
 		public TerminalNode METRIC() { return getToken(SearchQueryParser.METRIC, 0); }
-		public TerminalNode GROUP() { return getToken(SearchQueryParser.GROUP, 0); }
+		public TerminalNode LOG() { return getToken(SearchQueryParser.LOG, 0); }
 		public SearchTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -309,9 +325,9 @@ public class SearchQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(33);
+			setState(36);
 			_la = _input.LA(1);
-			if ( !(_la==METRIC || _la==GROUP) ) {
+			if ( !(_la==LOG || _la==METRIC) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -333,7 +349,7 @@ public class SearchQueryParser extends Parser {
 	}
 
 	public static class SearchTaskContext extends ParserRuleContext {
-		public TerminalNode TEXT() { return getToken(SearchQueryParser.TEXT, 0); }
+		public TerminalNode TASK() { return getToken(SearchQueryParser.TASK, 0); }
 		public SearchTaskContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -346,8 +362,8 @@ public class SearchQueryParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(35);
-			match(TEXT);
+			setState(38);
+			match(TASK);
 			}
 		}
 		catch (RecognitionException re) {
@@ -362,16 +378,17 @@ public class SearchQueryParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20(\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\3\2\3\3\3\3\3\3\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3\b\3\b\2"+
-		"\2\t\2\4\6\b\n\f\16\2\5\3\2\7\t\3\2\f\r\3\2\n\13\2 \2\20\3\2\2\2\4\22"+
-		"\3\2\2\2\6\35\3\2\2\2\b\37\3\2\2\2\n!\3\2\2\2\f#\3\2\2\2\16%\3\2\2\2\20"+
-		"\21\5\4\3\2\21\3\3\2\2\2\22\23\5\6\4\2\23\24\7\3\2\2\24\25\5\b\5\2\25"+
-		"\26\7\4\2\2\26\27\5\n\6\2\27\30\7\5\2\2\30\31\5\f\7\2\31\32\7\4\2\2\32"+
-		"\33\5\16\b\2\33\34\7\6\2\2\34\5\3\2\2\2\35\36\t\2\2\2\36\7\3\2\2\2\37"+
-		" \t\3\2\2 \t\3\2\2\2!\"\7\17\2\2\"\13\3\2\2\2#$\t\4\2\2$\r\3\2\2\2%&\7"+
-		"\16\2\2&\17\3\2\2\2\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\21+\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\6\2\22\n\2\r\2\16\2\23"+
+		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3"+
+		"\7\3\7\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\5\3\2\b\n\3\2\16\17\3\2\13\f"+
+		"\2$\2\21\3\2\2\2\4\25\3\2\2\2\6 \3\2\2\2\b\"\3\2\2\2\n$\3\2\2\2\f&\3\2"+
+		"\2\2\16(\3\2\2\2\20\22\5\4\3\2\21\20\3\2\2\2\22\23\3\2\2\2\23\21\3\2\2"+
+		"\2\23\24\3\2\2\2\24\3\3\2\2\2\25\26\5\6\4\2\26\27\7\3\2\2\27\30\5\b\5"+
+		"\2\30\31\7\4\2\2\31\32\5\n\6\2\32\33\7\5\2\2\33\34\5\f\7\2\34\35\7\4\2"+
+		"\2\35\36\5\16\b\2\36\37\7\6\2\2\37\5\3\2\2\2 !\t\2\2\2!\7\3\2\2\2\"#\t"+
+		"\3\2\2#\t\3\2\2\2$%\7\7\2\2%\13\3\2\2\2&\'\t\4\2\2\'\r\3\2\2\2()\7\20"+
+		"\2\2)\17\3\2\2\2\3\23";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
