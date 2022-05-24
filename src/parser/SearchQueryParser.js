@@ -2,17 +2,22 @@
 // jshint ignore: start
 import antlr4 from 'antlr4';
 import SearchQueryListener from './SearchQueryListener.js';
-const serializedATN = [4,1,15,41,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
-2,5,7,5,2,6,7,6,1,0,4,0,16,8,0,11,0,12,0,17,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,2,1,2,1,3,1,3,1,4,1,4,1,5,1,5,1,6,1,6,1,6,0,0,7,0,2,4,
-6,8,10,12,0,3,1,0,6,8,1,0,12,13,1,0,9,10,34,0,15,1,0,0,0,2,19,1,0,0,0,4,
-30,1,0,0,0,6,32,1,0,0,0,8,34,1,0,0,0,10,36,1,0,0,0,12,38,1,0,0,0,14,16,3,
-2,1,0,15,14,1,0,0,0,16,17,1,0,0,0,17,15,1,0,0,0,17,18,1,0,0,0,18,1,1,0,0,
-0,19,20,3,4,2,0,20,21,5,1,0,0,21,22,3,6,3,0,22,23,5,2,0,0,23,24,3,8,4,0,
-24,25,5,3,0,0,25,26,3,10,5,0,26,27,5,2,0,0,27,28,3,12,6,0,28,29,5,4,0,0,
-29,3,1,0,0,0,30,31,7,0,0,0,31,5,1,0,0,0,32,33,7,1,0,0,33,7,1,0,0,0,34,35,
-5,5,0,0,35,9,1,0,0,0,36,37,7,2,0,0,37,11,1,0,0,0,38,39,5,14,0,0,39,13,1,
-0,0,0,1,17];
+const serializedATN = [4,1,17,56,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,
+2,5,7,5,1,0,1,0,1,0,1,1,1,1,1,1,3,1,19,8,1,1,1,1,1,1,1,1,1,3,1,25,8,1,1,
+2,1,2,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,
+4,3,4,46,8,4,1,5,1,5,1,5,1,5,1,5,1,5,3,5,54,8,5,1,5,0,0,6,0,2,4,6,8,10,0,
+2,1,0,4,7,2,0,9,9,11,11,55,0,12,1,0,0,0,2,15,1,0,0,0,4,26,1,0,0,0,6,28,1,
+0,0,0,8,45,1,0,0,0,10,53,1,0,0,0,12,13,3,2,1,0,13,14,5,0,0,1,14,1,1,0,0,
+0,15,16,3,4,2,0,16,18,5,1,0,0,17,19,3,6,3,0,18,17,1,0,0,0,18,19,1,0,0,0,
+19,20,1,0,0,0,20,21,3,8,4,0,21,22,5,1,0,0,22,24,3,10,5,0,23,25,5,1,0,0,24,
+23,1,0,0,0,24,25,1,0,0,0,25,3,1,0,0,0,26,27,5,3,0,0,27,5,1,0,0,0,28,29,7,
+0,0,0,29,30,5,1,0,0,30,31,5,15,0,0,31,32,5,1,0,0,32,7,1,0,0,0,33,34,7,1,
+0,0,34,35,5,2,0,0,35,46,5,17,0,0,36,37,5,10,0,0,37,38,5,2,0,0,38,46,5,14,
+0,0,39,40,7,1,0,0,40,41,5,2,0,0,41,46,5,16,0,0,42,43,5,10,0,0,43,44,5,2,
+0,0,44,46,5,13,0,0,45,33,1,0,0,0,45,36,1,0,0,0,45,39,1,0,0,0,45,42,1,0,0,
+0,46,9,1,0,0,0,47,48,5,8,0,0,48,49,5,2,0,0,49,54,5,17,0,0,50,51,5,8,0,0,
+51,52,5,2,0,0,52,54,5,16,0,0,53,47,1,0,0,0,53,50,1,0,0,0,54,11,1,0,0,0,4,
+18,24,45,53];
 
 
 const atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -24,14 +29,14 @@ const sharedContextCache = new antlr4.PredictionContextCache();
 export default class SearchQueryParser extends antlr4.Parser {
 
     static grammarFileName = "SearchQuery.g4";
-    static literalNames = [ null, "' '", "':\"'", "'\" '", "'\"'", null, 
-                            "'show'", "'display'", "'get'", "'log'", "'metric'", 
-                            "'group'", "'source'", "'sourceip'" ];
-    static symbolicNames = [ null, null, null, null, null, "ONLYIP", "SHOW", 
-                             "DISPLAY", "GET", "LOG", "METRIC", "GROUP", 
-                             "SOURCE", "SOURCEIP", "TASK", "WS" ];
-    static ruleNames = [ "searchEntry", "searchQuery", "searchOperation", 
-                         "searchSource", "searchIP", "searchType", "searchTask" ];
+    static literalNames = [ null, null, "':'" ];
+    static symbolicNames = [ null, "WHITESPACE", "SEPERATOR", "COMMAND", 
+                             "TOP", "HIGHEST", "LAST", "LEAST", "COUNTERTYPE", 
+                             "SOURCETYPESOURCE", "SOURCETYPEIP", "SOURCETYPEGROUP", 
+                             "TIMELINE", "QUOTEDIP", "ONLYIP", "DIGITS", 
+                             "QUOTEDVALUE", "VALUE" ];
+    static ruleNames = [ "searchEntry", "searchQuery", "command", "topnsorting", 
+                         "source", "counter" ];
 
     constructor(input) {
         super(input);
@@ -50,19 +55,12 @@ export default class SearchQueryParser extends antlr4.Parser {
 	searchEntry() {
 	    let localctx = new SearchEntryContext(this, this._ctx, this.state);
 	    this.enterRule(localctx, 0, SearchQueryParser.RULE_searchEntry);
-	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 15; 
-	        this._errHandler.sync(this);
-	        _la = this._input.LA(1);
-	        do {
-	            this.state = 14;
-	            this.searchQuery();
-	            this.state = 17; 
-	            this._errHandler.sync(this);
-	            _la = this._input.LA(1);
-	        } while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << SearchQueryParser.SHOW) | (1 << SearchQueryParser.DISPLAY) | (1 << SearchQueryParser.GET))) !== 0));
+	        this.state = 12;
+	        this.searchQuery();
+	        this.state = 13;
+	        this.match(SearchQueryParser.EOF);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -82,59 +80,95 @@ export default class SearchQueryParser extends antlr4.Parser {
 	searchQuery() {
 	    let localctx = new SearchQueryContext(this, this._ctx, this.state);
 	    this.enterRule(localctx, 2, SearchQueryParser.RULE_searchQuery);
+	    var _la = 0; // Token type
 	    try {
 	        this.enterOuterAlt(localctx, 1);
-	        this.state = 19;
-	        this.searchOperation();
+	        this.state = 15;
+	        this.command();
+	        this.state = 16;
+	        this.match(SearchQueryParser.WHITESPACE);
+	        this.state = 18;
+	        this._errHandler.sync(this);
+	        _la = this._input.LA(1);
+	        if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << SearchQueryParser.TOP) | (1 << SearchQueryParser.HIGHEST) | (1 << SearchQueryParser.LAST) | (1 << SearchQueryParser.LEAST))) !== 0)) {
+	            this.state = 17;
+	            this.topnsorting();
+	        }
+
 	        this.state = 20;
-	        this.match(SearchQueryParser.T__0);
+	        this.source();
 	        this.state = 21;
-	        this.searchSource();
+	        this.match(SearchQueryParser.WHITESPACE);
 	        this.state = 22;
-	        this.match(SearchQueryParser.T__1);
-	        this.state = 23;
-	        this.searchIP();
+	        this.counter();
 	        this.state = 24;
-	        this.match(SearchQueryParser.T__2);
-	        this.state = 25;
-	        this.searchType();
+	        this._errHandler.sync(this);
+	        _la = this._input.LA(1);
+	        if(_la===SearchQueryParser.WHITESPACE) {
+	            this.state = 23;
+	            this.match(SearchQueryParser.WHITESPACE);
+	        }
+
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+
+
+
+	command() {
+	    let localctx = new CommandContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 4, SearchQueryParser.RULE_command);
+	    try {
+	        this.enterOuterAlt(localctx, 1);
 	        this.state = 26;
-	        this.match(SearchQueryParser.T__1);
-	        this.state = 27;
-	        this.searchTask();
+	        this.match(SearchQueryParser.COMMAND);
+	    } catch (re) {
+	    	if(re instanceof antlr4.error.RecognitionException) {
+		        localctx.exception = re;
+		        this._errHandler.reportError(this, re);
+		        this._errHandler.recover(this, re);
+		    } else {
+		    	throw re;
+		    }
+	    } finally {
+	        this.exitRule();
+	    }
+	    return localctx;
+	}
+
+
+
+	topnsorting() {
+	    let localctx = new TopnsortingContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 6, SearchQueryParser.RULE_topnsorting);
+	    var _la = 0; // Token type
+	    try {
+	        this.enterOuterAlt(localctx, 1);
 	        this.state = 28;
-	        this.match(SearchQueryParser.T__3);
-	    } catch (re) {
-	    	if(re instanceof antlr4.error.RecognitionException) {
-		        localctx.exception = re;
-		        this._errHandler.reportError(this, re);
-		        this._errHandler.recover(this, re);
-		    } else {
-		    	throw re;
-		    }
-	    } finally {
-	        this.exitRule();
-	    }
-	    return localctx;
-	}
-
-
-
-	searchOperation() {
-	    let localctx = new SearchOperationContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 4, SearchQueryParser.RULE_searchOperation);
-	    var _la = 0; // Token type
-	    try {
-	        this.enterOuterAlt(localctx, 1);
+	        _la = this._input.LA(1);
+	        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << SearchQueryParser.TOP) | (1 << SearchQueryParser.HIGHEST) | (1 << SearchQueryParser.LAST) | (1 << SearchQueryParser.LEAST))) !== 0))) {
+	        this._errHandler.recoverInline(this);
+	        }
+	        else {
+	        	this._errHandler.reportMatch(this);
+	            this.consume();
+	        }
+	        this.state = 29;
+	        this.match(SearchQueryParser.WHITESPACE);
 	        this.state = 30;
-	        _la = this._input.LA(1);
-	        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << SearchQueryParser.SHOW) | (1 << SearchQueryParser.DISPLAY) | (1 << SearchQueryParser.GET))) !== 0))) {
-	        this._errHandler.recoverInline(this);
-	        }
-	        else {
-	        	this._errHandler.reportMatch(this);
-	            this.consume();
-	        }
+	        this.match(SearchQueryParser.DIGITS);
+	        this.state = 31;
+	        this.match(SearchQueryParser.WHITESPACE);
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -151,74 +185,69 @@ export default class SearchQueryParser extends antlr4.Parser {
 
 
 
-	searchSource() {
-	    let localctx = new SearchSourceContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 6, SearchQueryParser.RULE_searchSource);
+	source() {
+	    let localctx = new SourceContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 8, SearchQueryParser.RULE_source);
 	    var _la = 0; // Token type
 	    try {
-	        this.enterOuterAlt(localctx, 1);
-	        this.state = 32;
-	        _la = this._input.LA(1);
-	        if(!(_la===SearchQueryParser.SOURCE || _la===SearchQueryParser.SOURCEIP)) {
-	        this._errHandler.recoverInline(this);
-	        }
-	        else {
-	        	this._errHandler.reportMatch(this);
-	            this.consume();
-	        }
-	    } catch (re) {
-	    	if(re instanceof antlr4.error.RecognitionException) {
-		        localctx.exception = re;
-		        this._errHandler.reportError(this, re);
-		        this._errHandler.recover(this, re);
-		    } else {
-		    	throw re;
-		    }
-	    } finally {
-	        this.exitRule();
-	    }
-	    return localctx;
-	}
+	        this.state = 45;
+	        this._errHandler.sync(this);
+	        var la_ = this._interp.adaptivePredict(this._input,2,this._ctx);
+	        switch(la_) {
+	        case 1:
+	            this.enterOuterAlt(localctx, 1);
+	            this.state = 33;
+	            _la = this._input.LA(1);
+	            if(!(_la===SearchQueryParser.SOURCETYPESOURCE || _la===SearchQueryParser.SOURCETYPEGROUP)) {
+	            this._errHandler.recoverInline(this);
+	            }
+	            else {
+	            	this._errHandler.reportMatch(this);
+	                this.consume();
+	            }
+	            this.state = 34;
+	            this.match(SearchQueryParser.SEPERATOR);
+	            this.state = 35;
+	            this.match(SearchQueryParser.VALUE);
+	            break;
 
+	        case 2:
+	            this.enterOuterAlt(localctx, 2);
+	            this.state = 36;
+	            this.match(SearchQueryParser.SOURCETYPEIP);
+	            this.state = 37;
+	            this.match(SearchQueryParser.SEPERATOR);
+	            this.state = 38;
+	            this.match(SearchQueryParser.ONLYIP);
+	            break;
 
+	        case 3:
+	            this.enterOuterAlt(localctx, 3);
+	            this.state = 39;
+	            _la = this._input.LA(1);
+	            if(!(_la===SearchQueryParser.SOURCETYPESOURCE || _la===SearchQueryParser.SOURCETYPEGROUP)) {
+	            this._errHandler.recoverInline(this);
+	            }
+	            else {
+	            	this._errHandler.reportMatch(this);
+	                this.consume();
+	            }
+	            this.state = 40;
+	            this.match(SearchQueryParser.SEPERATOR);
+	            this.state = 41;
+	            this.match(SearchQueryParser.QUOTEDVALUE);
+	            break;
 
-	searchIP() {
-	    let localctx = new SearchIPContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 8, SearchQueryParser.RULE_searchIP);
-	    try {
-	        this.enterOuterAlt(localctx, 1);
-	        this.state = 34;
-	        this.match(SearchQueryParser.ONLYIP);
-	    } catch (re) {
-	    	if(re instanceof antlr4.error.RecognitionException) {
-		        localctx.exception = re;
-		        this._errHandler.reportError(this, re);
-		        this._errHandler.recover(this, re);
-		    } else {
-		    	throw re;
-		    }
-	    } finally {
-	        this.exitRule();
-	    }
-	    return localctx;
-	}
+	        case 4:
+	            this.enterOuterAlt(localctx, 4);
+	            this.state = 42;
+	            this.match(SearchQueryParser.SOURCETYPEIP);
+	            this.state = 43;
+	            this.match(SearchQueryParser.SEPERATOR);
+	            this.state = 44;
+	            this.match(SearchQueryParser.QUOTEDIP);
+	            break;
 
-
-
-	searchType() {
-	    let localctx = new SearchTypeContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 10, SearchQueryParser.RULE_searchType);
-	    var _la = 0; // Token type
-	    try {
-	        this.enterOuterAlt(localctx, 1);
-	        this.state = 36;
-	        _la = this._input.LA(1);
-	        if(!(_la===SearchQueryParser.LOG || _la===SearchQueryParser.METRIC)) {
-	        this._errHandler.recoverInline(this);
-	        }
-	        else {
-	        	this._errHandler.reportMatch(this);
-	            this.consume();
 	        }
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
@@ -236,13 +265,35 @@ export default class SearchQueryParser extends antlr4.Parser {
 
 
 
-	searchTask() {
-	    let localctx = new SearchTaskContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 12, SearchQueryParser.RULE_searchTask);
+	counter() {
+	    let localctx = new CounterContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 10, SearchQueryParser.RULE_counter);
 	    try {
-	        this.enterOuterAlt(localctx, 1);
-	        this.state = 38;
-	        this.match(SearchQueryParser.TASK);
+	        this.state = 53;
+	        this._errHandler.sync(this);
+	        var la_ = this._interp.adaptivePredict(this._input,3,this._ctx);
+	        switch(la_) {
+	        case 1:
+	            this.enterOuterAlt(localctx, 1);
+	            this.state = 47;
+	            this.match(SearchQueryParser.COUNTERTYPE);
+	            this.state = 48;
+	            this.match(SearchQueryParser.SEPERATOR);
+	            this.state = 49;
+	            this.match(SearchQueryParser.VALUE);
+	            break;
+
+	        case 2:
+	            this.enterOuterAlt(localctx, 2);
+	            this.state = 50;
+	            this.match(SearchQueryParser.COUNTERTYPE);
+	            this.state = 51;
+	            this.match(SearchQueryParser.SEPERATOR);
+	            this.state = 52;
+	            this.match(SearchQueryParser.QUOTEDVALUE);
+	            break;
+
+	        }
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -261,29 +312,30 @@ export default class SearchQueryParser extends antlr4.Parser {
 }
 
 SearchQueryParser.EOF = antlr4.Token.EOF;
-SearchQueryParser.T__0 = 1;
-SearchQueryParser.T__1 = 2;
-SearchQueryParser.T__2 = 3;
-SearchQueryParser.T__3 = 4;
-SearchQueryParser.ONLYIP = 5;
-SearchQueryParser.SHOW = 6;
-SearchQueryParser.DISPLAY = 7;
-SearchQueryParser.GET = 8;
-SearchQueryParser.LOG = 9;
-SearchQueryParser.METRIC = 10;
-SearchQueryParser.GROUP = 11;
-SearchQueryParser.SOURCE = 12;
-SearchQueryParser.SOURCEIP = 13;
-SearchQueryParser.TASK = 14;
-SearchQueryParser.WS = 15;
+SearchQueryParser.WHITESPACE = 1;
+SearchQueryParser.SEPERATOR = 2;
+SearchQueryParser.COMMAND = 3;
+SearchQueryParser.TOP = 4;
+SearchQueryParser.HIGHEST = 5;
+SearchQueryParser.LAST = 6;
+SearchQueryParser.LEAST = 7;
+SearchQueryParser.COUNTERTYPE = 8;
+SearchQueryParser.SOURCETYPESOURCE = 9;
+SearchQueryParser.SOURCETYPEIP = 10;
+SearchQueryParser.SOURCETYPEGROUP = 11;
+SearchQueryParser.TIMELINE = 12;
+SearchQueryParser.QUOTEDIP = 13;
+SearchQueryParser.ONLYIP = 14;
+SearchQueryParser.DIGITS = 15;
+SearchQueryParser.QUOTEDVALUE = 16;
+SearchQueryParser.VALUE = 17;
 
 SearchQueryParser.RULE_searchEntry = 0;
 SearchQueryParser.RULE_searchQuery = 1;
-SearchQueryParser.RULE_searchOperation = 2;
-SearchQueryParser.RULE_searchSource = 3;
-SearchQueryParser.RULE_searchIP = 4;
-SearchQueryParser.RULE_searchType = 5;
-SearchQueryParser.RULE_searchTask = 6;
+SearchQueryParser.RULE_command = 2;
+SearchQueryParser.RULE_topnsorting = 3;
+SearchQueryParser.RULE_source = 4;
+SearchQueryParser.RULE_counter = 5;
 
 class SearchEntryContext extends antlr4.ParserRuleContext {
 
@@ -299,15 +351,12 @@ class SearchEntryContext extends antlr4.ParserRuleContext {
         this.ruleIndex = SearchQueryParser.RULE_searchEntry;
     }
 
-	searchQuery = function(i) {
-	    if(i===undefined) {
-	        i = null;
-	    }
-	    if(i===null) {
-	        return this.getTypedRuleContexts(SearchQueryContext);
-	    } else {
-	        return this.getTypedRuleContext(SearchQueryContext,i);
-	    }
+	searchQuery() {
+	    return this.getTypedRuleContext(SearchQueryContext,0);
+	};
+
+	EOF() {
+	    return this.getToken(SearchQueryParser.EOF, 0);
 	};
 
 	enterRule(listener) {
@@ -341,24 +390,32 @@ class SearchQueryContext extends antlr4.ParserRuleContext {
         this.ruleIndex = SearchQueryParser.RULE_searchQuery;
     }
 
-	searchOperation() {
-	    return this.getTypedRuleContext(SearchOperationContext,0);
+	command() {
+	    return this.getTypedRuleContext(CommandContext,0);
 	};
 
-	searchSource() {
-	    return this.getTypedRuleContext(SearchSourceContext,0);
+	WHITESPACE = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(SearchQueryParser.WHITESPACE);
+	    } else {
+	        return this.getToken(SearchQueryParser.WHITESPACE, i);
+	    }
 	};
 
-	searchIP() {
-	    return this.getTypedRuleContext(SearchIPContext,0);
+
+	source() {
+	    return this.getTypedRuleContext(SourceContext,0);
 	};
 
-	searchType() {
-	    return this.getTypedRuleContext(SearchTypeContext,0);
+	counter() {
+	    return this.getTypedRuleContext(CounterContext,0);
 	};
 
-	searchTask() {
-	    return this.getTypedRuleContext(SearchTaskContext,0);
+	topnsorting() {
+	    return this.getTypedRuleContext(TopnsortingContext,0);
 	};
 
 	enterRule(listener) {
@@ -378,7 +435,7 @@ class SearchQueryContext extends antlr4.ParserRuleContext {
 
 
 
-class SearchOperationContext extends antlr4.ParserRuleContext {
+class CommandContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -389,30 +446,22 @@ class SearchOperationContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = SearchQueryParser.RULE_searchOperation;
+        this.ruleIndex = SearchQueryParser.RULE_command;
     }
 
-	SHOW() {
-	    return this.getToken(SearchQueryParser.SHOW, 0);
-	};
-
-	DISPLAY() {
-	    return this.getToken(SearchQueryParser.DISPLAY, 0);
-	};
-
-	GET() {
-	    return this.getToken(SearchQueryParser.GET, 0);
+	COMMAND() {
+	    return this.getToken(SearchQueryParser.COMMAND, 0);
 	};
 
 	enterRule(listener) {
 	    if(listener instanceof SearchQueryListener ) {
-	        listener.enterSearchOperation(this);
+	        listener.enterCommand(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof SearchQueryListener ) {
-	        listener.exitSearchOperation(this);
+	        listener.exitCommand(this);
 		}
 	}
 
@@ -421,7 +470,7 @@ class SearchOperationContext extends antlr4.ParserRuleContext {
 
 
 
-class SearchSourceContext extends antlr4.ParserRuleContext {
+class TopnsortingContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -432,26 +481,50 @@ class SearchSourceContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = SearchQueryParser.RULE_searchSource;
+        this.ruleIndex = SearchQueryParser.RULE_topnsorting;
     }
 
-	SOURCE() {
-	    return this.getToken(SearchQueryParser.SOURCE, 0);
+	WHITESPACE = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(SearchQueryParser.WHITESPACE);
+	    } else {
+	        return this.getToken(SearchQueryParser.WHITESPACE, i);
+	    }
 	};
 
-	SOURCEIP() {
-	    return this.getToken(SearchQueryParser.SOURCEIP, 0);
+
+	DIGITS() {
+	    return this.getToken(SearchQueryParser.DIGITS, 0);
+	};
+
+	TOP() {
+	    return this.getToken(SearchQueryParser.TOP, 0);
+	};
+
+	HIGHEST() {
+	    return this.getToken(SearchQueryParser.HIGHEST, 0);
+	};
+
+	LAST() {
+	    return this.getToken(SearchQueryParser.LAST, 0);
+	};
+
+	LEAST() {
+	    return this.getToken(SearchQueryParser.LEAST, 0);
 	};
 
 	enterRule(listener) {
 	    if(listener instanceof SearchQueryListener ) {
-	        listener.enterSearchSource(this);
+	        listener.enterTopnsorting(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof SearchQueryListener ) {
-	        listener.exitSearchSource(this);
+	        listener.exitTopnsorting(this);
 		}
 	}
 
@@ -460,7 +533,7 @@ class SearchSourceContext extends antlr4.ParserRuleContext {
 
 
 
-class SearchIPContext extends antlr4.ParserRuleContext {
+class SourceContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -471,22 +544,50 @@ class SearchIPContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = SearchQueryParser.RULE_searchIP;
+        this.ruleIndex = SearchQueryParser.RULE_source;
     }
+
+	SEPERATOR() {
+	    return this.getToken(SearchQueryParser.SEPERATOR, 0);
+	};
+
+	VALUE() {
+	    return this.getToken(SearchQueryParser.VALUE, 0);
+	};
+
+	SOURCETYPESOURCE() {
+	    return this.getToken(SearchQueryParser.SOURCETYPESOURCE, 0);
+	};
+
+	SOURCETYPEGROUP() {
+	    return this.getToken(SearchQueryParser.SOURCETYPEGROUP, 0);
+	};
+
+	SOURCETYPEIP() {
+	    return this.getToken(SearchQueryParser.SOURCETYPEIP, 0);
+	};
 
 	ONLYIP() {
 	    return this.getToken(SearchQueryParser.ONLYIP, 0);
 	};
 
+	QUOTEDVALUE() {
+	    return this.getToken(SearchQueryParser.QUOTEDVALUE, 0);
+	};
+
+	QUOTEDIP() {
+	    return this.getToken(SearchQueryParser.QUOTEDIP, 0);
+	};
+
 	enterRule(listener) {
 	    if(listener instanceof SearchQueryListener ) {
-	        listener.enterSearchIP(this);
+	        listener.enterSource(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof SearchQueryListener ) {
-	        listener.exitSearchIP(this);
+	        listener.exitSource(this);
 		}
 	}
 
@@ -495,7 +596,7 @@ class SearchIPContext extends antlr4.ParserRuleContext {
 
 
 
-class SearchTypeContext extends antlr4.ParserRuleContext {
+class CounterContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -506,61 +607,34 @@ class SearchTypeContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = SearchQueryParser.RULE_searchType;
+        this.ruleIndex = SearchQueryParser.RULE_counter;
     }
 
-	METRIC() {
-	    return this.getToken(SearchQueryParser.METRIC, 0);
+	COUNTERTYPE() {
+	    return this.getToken(SearchQueryParser.COUNTERTYPE, 0);
 	};
 
-	LOG() {
-	    return this.getToken(SearchQueryParser.LOG, 0);
+	SEPERATOR() {
+	    return this.getToken(SearchQueryParser.SEPERATOR, 0);
+	};
+
+	VALUE() {
+	    return this.getToken(SearchQueryParser.VALUE, 0);
+	};
+
+	QUOTEDVALUE() {
+	    return this.getToken(SearchQueryParser.QUOTEDVALUE, 0);
 	};
 
 	enterRule(listener) {
 	    if(listener instanceof SearchQueryListener ) {
-	        listener.enterSearchType(this);
+	        listener.enterCounter(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof SearchQueryListener ) {
-	        listener.exitSearchType(this);
-		}
-	}
-
-
-}
-
-
-
-class SearchTaskContext extends antlr4.ParserRuleContext {
-
-    constructor(parser, parent, invokingState) {
-        if(parent===undefined) {
-            parent = null;
-        }
-        if(invokingState===undefined || invokingState===null) {
-            invokingState = -1;
-        }
-        super(parent, invokingState);
-        this.parser = parser;
-        this.ruleIndex = SearchQueryParser.RULE_searchTask;
-    }
-
-	TASK() {
-	    return this.getToken(SearchQueryParser.TASK, 0);
-	};
-
-	enterRule(listener) {
-	    if(listener instanceof SearchQueryListener ) {
-	        listener.enterSearchTask(this);
-		}
-	}
-
-	exitRule(listener) {
-	    if(listener instanceof SearchQueryListener ) {
-	        listener.exitSearchTask(this);
+	        listener.exitCounter(this);
 		}
 	}
 
@@ -572,8 +646,7 @@ class SearchTaskContext extends antlr4.ParserRuleContext {
 
 SearchQueryParser.SearchEntryContext = SearchEntryContext; 
 SearchQueryParser.SearchQueryContext = SearchQueryContext; 
-SearchQueryParser.SearchOperationContext = SearchOperationContext; 
-SearchQueryParser.SearchSourceContext = SearchSourceContext; 
-SearchQueryParser.SearchIPContext = SearchIPContext; 
-SearchQueryParser.SearchTypeContext = SearchTypeContext; 
-SearchQueryParser.SearchTaskContext = SearchTaskContext; 
+SearchQueryParser.CommandContext = CommandContext; 
+SearchQueryParser.TopnsortingContext = TopnsortingContext; 
+SearchQueryParser.SourceContext = SourceContext; 
+SearchQueryParser.CounterContext = CounterContext; 

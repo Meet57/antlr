@@ -23,48 +23,39 @@ export default class SearchQueryListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by SearchQueryParser#searchOperation.
-	enterSearchOperation(ctx) {
+	// Enter a parse tree produced by SearchQueryParser#command.
+	enterCommand(ctx) {
 	}
 
-	// Exit a parse tree produced by SearchQueryParser#searchOperation.
-	exitSearchOperation(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SearchQueryParser#searchSource.
-	enterSearchSource(ctx) {
-	}
-
-	// Exit a parse tree produced by SearchQueryParser#searchSource.
-	exitSearchSource(ctx) {
+	// Exit a parse tree produced by SearchQueryParser#command.
+	exitCommand(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SearchQueryParser#searchIP.
-	enterSearchIP(ctx) {
+	// Enter a parse tree produced by SearchQueryParser#topnsorting.
+	enterTopnsorting(ctx) {
 	}
 
-	// Exit a parse tree produced by SearchQueryParser#searchIP.
-	exitSearchIP(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SearchQueryParser#searchType.
-	enterSearchType(ctx) {
-	}
-
-	// Exit a parse tree produced by SearchQueryParser#searchType.
-	exitSearchType(ctx) {
+	// Exit a parse tree produced by SearchQueryParser#topnsorting.
+	exitTopnsorting(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SearchQueryParser#searchTask.
-	enterSearchTask(ctx) {
+	// Enter a parse tree produced by SearchQueryParser#source.
+	enterSource(ctx) {
 	}
 
-	// Exit a parse tree produced by SearchQueryParser#searchTask.
-	exitSearchTask(ctx) {
+	// Exit a parse tree produced by SearchQueryParser#source.
+	exitSource(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SearchQueryParser#counter.
+	enterCounter(ctx) {
+	}
+
+	// Exit a parse tree produced by SearchQueryParser#counter.
+	exitCounter(ctx) {
 	}
 
 
