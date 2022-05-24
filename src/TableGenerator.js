@@ -1,17 +1,25 @@
 import SearchQueryListener from "./parser/SearchQueryListener";
+import searchContext from "./searchContext";
 
 export default class TableGenerator extends SearchQueryListener {
   tableSource = "";
 
   exitSearchQuery(ctx) {
-    // const logType = ctx.logType().getText();
-    const searchOperation = ctx.searchOperation().getText();
-    const searchSource = ctx.searchSource().getText();
-    const searchIP = ctx.searchIP().getText();
-    const searchType = ctx.searchType().getText();
-    const searchTask = ctx.searchTask().getText();
+    try {
+      if (
+        ctx.searchOperation() &&
+        ctx.searchSource() &&
+        ctx.searchIP() &&
+        ctx.searchType() &&
+        ctx.searchTask()
+      ) {
+        const searchOperation = ctx.searchOperation().getText();
+        const searchSource = ctx.searchSource().getText();
+        const searchIP = ctx.searchIP().getText();
+        const searchType = ctx.searchType().getText();
+        const searchTask = ctx.searchTask().getText();
 
-    this.tableSource += `
+        this.tableSource += `
         <tr>
             <td>${searchOperation}</td>
             <td>${searchSource}</td>
@@ -20,11 +28,15 @@ export default class TableGenerator extends SearchQueryListener {
             <td>${searchTask}</td>
         <tr>
         `;
+      }
+    } catch (error) {
+      searchContext.setError(error);
+    }
   }
 
   getTable() {
     const table = `
-            <table class="table mt-5 table-hover">
+            <table class="table table-hover">
                 <tr class="table-dark">
                     <th>Operation</th>
                     <th>Source</th>
