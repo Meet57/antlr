@@ -1,34 +1,20 @@
-// grammar SearchQuery;
+
 
 // searchEntry: searchQuery+;
 
-// // PARSER Rules
-// searchQuery:
-// 	searchOperation ' ' searchSource ':"' searchIP '" ' searchType ':"' searchTask '"';
+// // PARSER Rules searchQuery: searchOperation ' ' searchSource ':"' searchIP '" ' searchType ':"'
+// searchTask '"';
 
-// searchOperation: (SHOW | DISPLAY | GET);
-// searchSource: (SOURCE | SOURCEIP);
-// searchIP: ONLYIP;
-// searchType: (METRIC | LOG);
-// searchTask: TASK;
+// searchOperation: (SHOW | DISPLAY | GET); searchSource: (SOURCE | SOURCEIP); searchIP: ONLYIP;
+// searchType: (METRIC | LOG); searchTask: TASK;
 
-// fragment DIGIT: [0-9];
-// fragment OCTATE: DIGIT DIGIT DIGIT | DIGIT DIGIT | DIGIT;
-// fragment IP: OCTATE '.' OCTATE '.' OCTATE '.' OCTATE;
-// fragment TEXT: [.a-zA-Z0-9~]+;
+// fragment DIGIT: [0-9]; fragment OCTATE: DIGIT DIGIT DIGIT | DIGIT DIGIT | DIGIT; fragment IP:
+// OCTATE '.' OCTATE '.' OCTATE '.' OCTATE; fragment TEXT: [.a-zA-Z0-9~]+;
 
-// // LEXER Rules
-// ONLYIP: IP;
-// SHOW: 'show';
-// DISPLAY: 'display';
-// GET: 'get';
-// LOG: 'log';
-// METRIC: 'metric';
-// GROUP: 'group';
+// // LEXER Rules ONLYIP: IP; SHOW: 'show'; DISPLAY: 'display'; GET: 'get'; LOG: 'log'; METRIC:
+// 'metric'; GROUP: 'group';
 
-// SOURCE: 'source';
-// SOURCEIP: 'sourceip';
-// TASK: [.a-zA-Z0-9~]+;
+// SOURCE: 'source'; SOURCEIP: 'sourceip'; TASK: [.a-zA-Z0-9~]+;
 
 // WS: [ \n\t]+ -> skip;
 
@@ -106,7 +92,7 @@ fragment LOG: L O G;
 fragment FLOW: F L O W;
 fragment LASTHOUR: L A S T H O U R;
 fragment TODAY: T O D A Y;
-fragment IP: OCTATE? '.' OCTATE '.' OCTATE '.' OCTATE?;
+fragment IP: OCTATE '.' OCTATE '.' OCTATE '.' OCTATE;
 
 WHITESPACE: (' ' | '\t')+;
 SEPERATOR: ':';

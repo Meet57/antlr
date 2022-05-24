@@ -5,9 +5,9 @@ export default class TableGenerator extends SearchQueryListener {
   tableSource = "";
 
   exitSearchQuery(ctx) {
-    console.log(ctx.parser.ruleNames);
+    let lastParser = ctx.parser.ruleNames.at(-1);
     try {
-      if (ctx.command() && ctx.source() && ctx.counter()) {
+      if (ctx[lastParser]()) {
         ctx.parser.ruleNames.slice(2).map((rule) => {
           if (ctx[rule]()) {
             this.tableSource += `
