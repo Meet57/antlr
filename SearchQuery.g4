@@ -1,5 +1,3 @@
-
-
 // searchEntry: searchQuery+;
 
 // // PARSER Rules searchQuery: searchOperation ' ' searchSource ':"' searchIP '" ' searchType ':"'
